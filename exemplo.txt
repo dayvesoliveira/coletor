@@ -1,0 +1,121 @@
+<html>
+  <head>
+    <title>::Coletor :: JRetail::</title>
+    <META name="robots" content="noindex">
+    <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+    <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+    <META HTTP-EQUIV="IB_Scanner" CONTENT="AutoEnter">
+    <META HTTP-EQUIV="IB_Scanner" CONTENT="JAVASCRIPT:onkey()">
+    <META HTTP-EQUIV="IB_OnKey13" CONTENT="JAVASCRIPT:onkey()">
+    
+    <%-- caso não seja intermec --%>
+    <c:out value="${shortcut}" escapeXml="false"/>
+    <%-- caso não seja intermec --%>
+    
+    <%-- meta tags intermec --%>
+    <c:out value="${teclasAtalho}" escapeXml="false"/>
+    <%--/meta tags intermec --%>
+
+    <link href="<%=request.getContextPath()%>/css/ie6.css" rel="stylesheet"/>
+    <link href="<%=request.getContextPath()%>/css/coletor.css" rel="stylesheet"/>
+    <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/jretail.ico" type="image/x-icon"/>
+    <SCRIPT LANGUAGE="JAVASCRIPT">
+    function onkey() {
+		var codBarra = document.frmArmaz.codBarra.value;
+		if (codBarra == null || codBarra === ""){
+			document.frmArmaz.codBarra.focus();
+		} else {
+			document.frmArmaz.submit();
+		}
+	}
+    function execute( action ){
+      	document.frmArmaz.action = '<%=request.getContextPath()%>/wms?action=ArmazenamentoHorizontalAction&method='+ action;
+       	document.frmArmaz.submit();
+    }
+    </SCRIPT>
+  </head>
+   <body style="/*width:240px;*/height:290px" onload="javascript:document.frmArmaz.codBarra.focus();">
+     <div class="toolbar" style="height:20px">
+         <table style="height:20px" cellspacing="0" cellpadding="0">
+            <tr>
+                <td width="100%" class="first"><h7>Armazenamento - Horizontal</h7></td>
+                <td align="right" width="30px">
+                    <button type="button" class="btn-conf ico-conf"  style="margin-left:5px;width:50px"
+                        onclick="javascript:document.location='<%=request.getContextPath()%>/wms?action=ConfigArmHorizontalAction&method=init'"
+                        title="Configurações">&nbsp;
+                    </button>
+                </td>
+            </tr>
+        </table>
+     </div>
+
+     <%-- fim menu --%>
+
+     <form action="<%=request.getContextPath()%>/wms?action=ArmazenamentoHorizontalAction" method="post" name="frmArmaz">
+
+        <%-- campos do formulario --%>
+
+        <div style="top:10px;left:5px;display:block;height:200px">
+            <fieldset>
+            <table class="table-form" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td><label>Ler Unidade de Armazenagem:</label></td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="div-qrcode">
+                            <div class="first-child" style="float:left;">
+                                <input type="text" id="codBarras" class="input-qrcode required" name="codBarra" size="60" />
+                            </div>
+                            <div class="last-child">
+                                <button type="submit" name="method" value="movimentar" 
+                                    class="btn-default ico-qrcode"  
+                                    title="Ler Unidade de Armazenagem">
+                                </button>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            </fieldset>
+        </div>
+
+        <%-- footbar --%>
+
+        <div id="footer" style="bottom:43px;left:0;position:fixed">
+            <table cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td style="padding:0;margin:0" width="50%">
+                            <div style="padding:0;margin:0">
+	                            <div style="float:left;width:33.33%;">
+	                                <button type="submit" name="method" value="movimentar" 
+	                                    class="btn-default btn-success" 
+	                                    style="width:100%;height:30px;padding:1px 0;" 
+	                                    title="Movimentar"><%=keys.create("F5")%>&nbsp;-&nbsp;Movimentar
+	                                </button>
+	                            </div>
+	                            <div style="display:inline;float:left;width:33.33%;">
+	                                <button type="button" class="btn-default" 
+	                                    style="width:100%;height:30px;padding:1px 0;"
+	                                    onclick="javascript:document.location='<%=request.getContextPath()%>/wms?action=ConfigArmHorizontalAction&method=init'"
+	                                    title="Configurações"><%=keys.create("F4")%>&nbsp;-&nbsp;Configurar
+	                                </button>
+	                            </div>
+	                            <div style="display:inline;float:left;width:33.33%;">
+	                                <button type="button" class="btn-default" 
+	                                    onclick="execute('acaoDesistir')"
+	                                    style="width:100%;height:30px;padding:1px 0;"
+	                                    title="Cancelar"><%=keys.create("ESC")%>&nbsp;-&nbsp;Cancelar
+	                                </button>
+	                            </div>
+	                        </div>
+                                
+                        </td>
+                    </tr>
+            </table>
+        </div>
+
+    </form>
+
+  </body>
+</html>
