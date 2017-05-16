@@ -1,0 +1,22 @@
+{
+  "name": "coletor",
+  "version": "1.0.0",
+  "title": "Project Coletor",
+  "description": "",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/dayvesoliveira/coletor-angular"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-contrib-jshint": "^1.1.0",
+    "grunt-contrib-sass": "^1.0.0",
+    "grunt-contrib-uglify": "^3.0.0"
+  },
+  "dependencies": {
+    "grunt-sass": "^2.0.0",
+    "node-sass": "^4.5.2"
+  }
+}
